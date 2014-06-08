@@ -3,13 +3,13 @@ layout: post
 title: "First Post"
 date: 2013-03-22 10:20
 comments: true
-categories: 
+categories:
 author: Celso Dantas
 ---
 
 Ok. New I have a blog. I was wondering a long time to create a full blog to myself. Now what? Now I'll post stuff I've been searching, studding and learning. The idea here is to share stuff with the Internet and help others.
 
-
+<!-- more -->
 
 As my first post, I would like to just post some tests. Here we go:
 
