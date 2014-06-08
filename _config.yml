@@ -7,8 +7,10 @@ pygments: true
 logo: false
 paginate: 15
 
-excerpt_separator: "excerpt_separator"
+excerpt_separator: "<!-- more -->"
 
 # Details for the RSS feed generator
 url:            'www.celsodantas.com'
-author:         'Celso Dantas'
+
+# Disqus Comments
+disqus_shortname: celsodantasblog
