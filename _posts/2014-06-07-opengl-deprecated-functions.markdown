@@ -10,6 +10,8 @@ A few days ago a decided to develop a game as an excuse to improve my C++ skills
 
 Now, in **OpenGL 4.1**, there's **no more default shaders**, so for now on, you need to load your own *vertex* and *fragment* shader. Also, there's no more `glTranslate`, `glPushMatrix`. All vectors manipulation (translate, rotate and scale) now needs to be done by your shader. This took me to had to back and refresh my memory (and study) and few mathematics stuff before going back to the code.
 
+<!-- more -->
+
 I had to study/refresh:
 
   - Linear transformations (to understand how to rotate, scale and translate a 3D point using Matrixes)
@@ -17,7 +19,6 @@ I had to study/refresh:
   - Quaternions
   - Euler Angles
 
-<!-- more -->
 ### Quaternions and Euler Angles
 
 A short version: You can rotate anything in 3D space with Matrixes, Quaternions and with Euler Angles. Each has it's own pros and cons. You can do everything with Matrixes, if you whish. But sometimes using Quaternions or Euler Angles is easy to solve a specific problem.
