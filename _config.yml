@@ -10,7 +10,8 @@ paginate: 15
 excerpt_separator: "<!-- more -->"
 
 # Details for the RSS feed generator
-url:            'www.celsodantas.com'
+url:    'www.celsodantas.com'
+author: 'Celso Dantas'
 
 # Disqus Comments
-disqus_shortname: celsodantasblog
+disqus_shortname: "celsodantasblog"
