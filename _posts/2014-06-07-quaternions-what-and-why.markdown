@@ -6,7 +6,7 @@ comments: true
 categories: ruby code
 ---
 
-To fully understand about Quaternions, you should first understand why **Complex Numbers** are. I'll
+To fully understand about Quaternions, you should first understand what **Complex Numbers** are. I'll
 explain what a Quaternion is in a general matter first, and then explain it's basics.
 
 ### What is it?
