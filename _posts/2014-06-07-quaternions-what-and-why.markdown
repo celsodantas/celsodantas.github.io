@@ -109,6 +109,7 @@ glm::mat4 rotationMatrix = glm::yawPitchRoll(0.f, PI/2.f, 0.f);
 Observations:
 
  - I'm using `GLM_FORCE_RADIANS` in the examples because the use of degrees is deprecated._
+ - I'm adding `<glm/ext.hpp>` for simplification purposes.
  - The end result should always be matrixes, as this is what your video card will read.
 
 
