@@ -2,8 +2,8 @@ name: Celso Dantas
 description: A blog about my studies and findings
 meta_description: "My name is Celso Dantas, and this is my blog."
 
-markdown: redcarpet
-pygments: true
+markdown: kramdown
+highlighter: rouge
 logo: false
 paginate: 15
 
