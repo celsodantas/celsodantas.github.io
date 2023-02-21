@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <script>
+      var csvFile = null;
+
+      function onFileSelected(input) {
+        var fileReader = new FileReader();
+        fileReader.readAsText(input.files[0], "UTF-8");
+
+        fileReader.onload = function (content) {
+          var tabContent = content.target.result;
+
+          var csvContent = tabToCsv(tabContent);
+          csvFile = new File([csvContent], "abn.csv", { type: "text/csv" });
+
+          document.getElementById("csvDownload").disabled = false;
+        }
+      }
+
+      function tabToCsv(tabString) {
+        var csvString = "id,currency,date,balance_start,balance,date_end,amount,description\n";
+
+        tabString = tabString.replace(/,/g, ".");
+        tabString = tabString.replace(/\t/g, ",");
+
+        csvString += tabString;
+
+        return csvString;
+      }
+
+      function downloadCsv(input) {
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(csvFile);
+        a.download = "abn.csv";
+        a.click();
+      }
+
+    </script>
+  </head>
+  <body>
+    <div>
+      Select the TAB file from ABN AMRO:
+      <div>
+        <input type="file" id="tabinput" onchange="onFileSelected(this)" />
+        <input type="button" value="Download CSV" disabled="true" id="csvDownload" onclick="downloadCsv(this)" />
+      </div>
+    </div>
+  </body>
+</html>
