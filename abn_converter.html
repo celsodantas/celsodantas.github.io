@@ -11,6 +11,8 @@
           var tabContent = content.target.result;
 
           var csvContent = tabToCsv(tabContent);
+          csvContent = memoToPayee(csvContent);
+          csvContent = formatDate(csvContent);
           csvFile = new File([csvContent], "abn.csv", { type: "text/csv" });
 
           document.getElementById("csvDownload").disabled = false;
@@ -18,7 +20,7 @@
       }
 
       function tabToCsv(tabString) {
-        var csvString = "id,currency,date,balance_start,balance,date_end,amount,description\n";
+        var csvString = "id,currency,date,balance_start,balance,date_end,amount,memo,payee\n";
 
         tabString = tabString.replace(/,/g, ".");
         tabString = tabString.replace(/\t/g, ",");
@@ -26,6 +28,71 @@
         csvString += tabString;
 
         return csvString;
+      }
+
+      function formatDate(csvContent) {
+        // converts YYYYMMDD to YYYY/MM/DD
+        var csvLines = csvContent.trim().split("\n");
+        var csvHeader = csvLines[0];
+        var csvBody = csvLines.slice(1);
+
+        var csvBodyNew = [];
+        for (var i = 0; i < csvBody.length; i++) {
+          var csvLine = csvBody[i];
+          var csvLineParts = csvLine.split(",");
+
+          var date = csvLineParts[2];
+          var dateNew = date.substring(0, 4) + "/" + date.substring(4, 6) + "/" + date.substring(6, 8);
+          csvLineParts[2] = dateNew;
+
+          csvBodyNew.push(csvLineParts.join(","));
+        }
+
+        return csvHeader + "\n" + csvBodyNew.join("\n");
+      }
+
+      function memoToPayee(csvContent) {
+        var csvLines = csvContent.trim().split("\n");
+        var csvHeader = csvLines[0];
+        var csvBody = csvLines.slice(1);
+
+        var csvBodyNew = [];
+        for (var i = 0; i < csvBody.length; i++) {
+          var csvLine = csvBody[i];
+          var csvLineParts = csvLine.split(",");
+
+          var memo = csvLineParts[7];
+          var payee = "";
+
+          if (memo.includes("/CZ Groep")) {
+            payee = "CZ Insurance";
+          } else if (memo.includes("/SportCity/")) {
+            payee = "SportCity";
+          } else if (memo.includes("/SWAPFIETS ")) {
+            payee = "Swapfiets";
+          } else if (memo.includes("/Ekoplaza")) {
+            payee = "Ekoplaza";
+          } else if (memo.includes("soupenzo")) {
+            payee = "Soup En Zo";
+          } else if (memo.includes("ALBERT HEIJN") || memo.includes("AH 8684.PAS442")) {
+            payee = "Albert Heijn";
+          } else if (memo.includes("ovpay.nl")) {
+            payee = "OV-Chipcard"
+          } else if (memo.includes("Back to Black")) {
+            payee = "Back to Black"
+          } else if (memo.includes("Bocca Coffee")) {
+            payee = "Bocca"
+          } else if (memo.include("/Mywheels")) {
+            payee = "MyWheels"
+          }
+
+          csvLineParts[8] = payee;
+
+          csvBodyNew.push(csvLineParts.join(","));
+        }
+
+        return csvHeader + "\n" + csvBodyNew.join("\n");
+
       }
 
       function downloadCsv(input) {
